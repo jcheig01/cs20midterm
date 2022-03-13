@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Beastly&family=Shrikhand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mid.css">
+    <style>
+        body {
+            background: url('space.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #moon {
+            height: 70%;
+            width: auto;
+            position: absolute;
+            bottom: 10%;
+        }
+        #moon:hover {
+            height: 71%;
+            width: auto;
+            transition: 0.2s;
+        }
+
+        #grid {
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            -webkit-text-stroke: 1px #7A3803;
+            color: #E3B104;
+            font-size: 90px;
+            font-weight: bold;
+            position: absolute;
+            top: 10%;
+            line-height: 75px;
+            font-family: 'Shrikhand', cursive;
+        }
+        p {
+            color: #FFF;
+            font-size: 20px;
+            top: 40%;
+            font-weight: bold;
+            position: absolute;
+            font-family: 'IBM Plex Sans', sans-serif;
+            padding: 5px;
+            background-color: #000;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <nav>
+        <ul class="nav">
+            <li class="nav-list"><a class="curr" href="home.html">Home</a></li>
+            <li class="nav-list"><a href="home.html">Home</a></li>
+            <li class="nav-list"><a href="home.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <div id='grid'>
+        <img id='moon' src="moon.png">
+        <h1>moon</br>shoes</h1>
+        <p>one small step for you, one big step for human kind.</p>
+    </div>
+
+
+    <script>
+        $(function () {
+            function bob () {
+                $('#moon')
+                .animate( { bottom: 90 }, 2000)
+                .animate( { bottom: 60 }, 2000, bob);
+            }
+            bob ();
+        });
+    </script>
+</body>
+
+
+
+</html>
