@@ -1,0 +1,155 @@
+/* aboutUs.html */
+
+/* Mini Navigation Bar */
+body {
+    padding-bottom: 15px;
+    margin:0;
+}
+
+.nav {
+    padding-top: 30px;
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+    display:flex;
+    justify-content:center;
+}
+
+.nav li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.nav_locations ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+    display:flex;
+    justify-content:center;
+}
+
+.nav_locations li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.nav input[type = button] {
+    text-decoration: none;
+    color:aliceblue;
+    width: 100%;
+    display: block;
+    padding: 18px 14px;
+    font-size: 12px;
+    text-align: center;
+    font-family: Arial;
+    border: 1px solid aliceblue;
+    background-color: black;
+
+}
+
+.nav input[type = button]:hover {
+    background: aliceblue;
+    color:black;
+}
+
+.nav input[type = button].active {
+    background: aliceblue;
+    color:black;
+}
+#slide_inner, #slide_outer {
+    text-decoration: none;
+}
+
+#slide_inner input[type = button] {
+    text-decoration: none;
+    color:aliceblue;
+    padding: 18px 14px;
+    font-size: 12px;
+    background-color: black;
+    text-align: center;
+    cursor: pointer;
+    border:none;
+}
+
+#slide_inner input[type = button]:hover, #slide_inner input[type = button].active{
+    border-bottom: 2px solid white;
+}
+
+
+footer {
+    font-family: 'Playfair Display', serif;
+    color:aliceblue;
+    margin-right: 5%;
+    margin-left: 5%;  
+    text-align: right;
+    margin-top: 150px;
+    font-size: 16px;
+}
+
+@media (max-width: 800px) {
+}
+
+@media (max-height: 500px) {
+    
+}
+
+/* contactUs.html */
+#contact_form_info input[type = button] {
+    width: 60%;
+    color:aliceblue;
+    padding: 18px 14px;
+    font-size: 16px;
+    font-family:'Titillium Web', sans-serif; 
+    border: 1px solid aliceblue;
+    background-color: black;
+
+}
+
+#contact_form_info input[type = button]:hover {
+    background: rgba(221, 226, 221, 0.2);
+
+}
+
+#contact_form_submit input[type=button] {
+    background-color: black;
+    color:aliceblue;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family:'Titillium Web', sans-serif;
+    display: block;
+    font-size: 18px;
+}
+
+#contact_form_submit input[type=text], select, textarea {
+    width: 95%; 
+    border: 1px solid #ccc;
+    padding: 12px;  
+    border-radius: 4px; 
+    margin-top: 5px; 
+    margin-bottom: 10px; 
+    font-family:'Titillium Web', sans-serif; 
+  }
+  
+  #contact_form_submit input[type=submit] {
+    background-color: black;
+    color:aliceblue;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family:'Titillium Web', sans-serif; 
+  }
+  
+  #contact_form_submit input[type=submit]:hover {
+    background: rgba(221, 226, 221, 0.2);
+  }
+

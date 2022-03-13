@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">	
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <title>Contact Us</title>
+        <link rel = "stylesheet" type = "text/css" href= "about_contact.css">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Sansita+Swashed:wght@300&family=Smooch+Sans:wght@100&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nothing+You+Could+Do&family=Open+Sans+Condensed:wght@300&family=Shizuru&family=Tillana&family=Titillium+Web:wght@200&display=swap');
+
+            /* Header */
+
+            body {
+                background-color: black;
+            }
+            .header {
+                background-color: white;
+                height: auto;
+                margin: auto;
+                padding-bottom: 15px;
+            }
+
+            /* Contact Us Page Starts here */
+            
+            /* General Text Wrapper */
+            .content_wrapper {
+                height: auto;
+                margin: auto;
+                width: 80%;
+                /* background-color: black; */
+                padding: 3% 6%;
+                padding-bottom: 30px;
+            }
+
+            .choice_boxes {
+                display: flex;
+                justify-content: center;                
+            }
+
+            .box {
+                display: inline-block;
+                justify-content: center;
+                text-align: center;
+                border: 2px solid white;
+                height: 350px;
+                width: 350px;
+                margin: 20px;
+                border-radius: 25px;
+                font-family:'Titillium Web', sans-serif; 
+                color: white;
+
+            }
+            .box h1 {
+                font-size: 28px; 
+            }
+
+            .box h2 {
+                font-size: 20px; 
+            }
+
+            #call:hover, #email:hover {
+                background: rgba(221, 226, 221, 0.2);
+            }
+
+            #contact_form {
+                overflow:auto;
+            }
+
+            #choose_service {
+                font-size: 36px; 
+                color: white; 
+                font-family:'Titillium Web', sans-serif; 
+                text-align: center;
+                padding: 5px;
+            }
+
+            #call_info, #email_info, #contact_form_info {
+                margin: auto;
+                text-align: center;
+            }
+
+            #s_phrase {
+                font-size: 20px; 
+                color: white; 
+                font-family:'Titillium Web', sans-serif; 
+                text-align: center;
+                padding: 5px;
+            }
+            
+            /* Button Effect */
+            
+            @media (max-width: 800px) {
+                .choice_boxes {
+                    display: inline;
+                }
+            }
+
+            @media (max-height: 500px) {  
+                        
+            }
+            
+
+
+        </style>
+    </head>
+    <body>
+        <!--Mini Nav Bar-->
+        <body>
+            <div class = "header">header will be placed here</div>
+            <h1 id = "choose_service">Contact Us</h1>
+            <p id = "s_phrase">Let us know how we can help you resolve your questions</p>
+            
+            <div class = "content_wrapper">
+                <div class = "choice_boxes">
+                    <div class = "box" id = "call">
+                        <div id = "call_info"></div>
+                    </div>
+                    <div class = "box" id = "email">
+                        <div id = "email_info"></div>
+                    </div>
+                    <div class = "box" id = "contact_form">
+                        <div id = "contact_form_info">
+                            <h1>Contact Form</h1>
+                            <p>Please fill out a contact form</p>
+                            <input type = "button" id = "go_button" value = "Go to contact form">
+                        </div>
+                        <div id = "contact_form_submit">
+
+                            <input type = "button" id = "back_button" value = "&#8592">
+
+                            <form name = "contact_form_page" method = "post">
+                                <label for="first_name">First Name</label>
+                                <input type="text" id="fist_name" name="firstname">
+                            
+                                <label for="last_name">Last Name</label>
+                                <input type="text" id="last_name" name="lastname">
+                            
+                                <label for="store">Store</label>
+                                <select id="store" name="store">
+                                  <option value="boston">Boston</option>
+                                  <option value="medford">Medford</option>
+                                </select>
+                            
+                                <label for="subject">Contact Reason</label>
+                                <textarea id="contact_reason" name="contact_reason" style="height:100px"></textarea>
+                            
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            </div>       
+            <!--footer-->
+            <footer> 
+                <hr>
+                2022 Moon Shoes All Rights Reserved
+            </footer>
+
+
+            <script language = "javascript">
+                $(document).ready( function () {
+
+                    $("#contact_form_info").show();
+                    $("#contact_form_submit").hide();
+                    document.getElementById("call_info").innerHTML = "<h1>Phone</h1>"
+                    document.getElementById("call_info").innerHTML += "<h2>Medford</h2>"
+                    document.getElementById("call_info").innerHTML += "<p>P: 617-8989-4545</p>"
+                    document.getElementById("call_info").innerHTML += "<h2>Boston</h2>"
+                    document.getElementById("call_info").innerHTML += "<p>P: 617-5959-4545</p>"
+
+                    document.getElementById("email_info").innerHTML = "<h1>Email</h1>"
+                    document.getElementById("email_info").innerHTML += "<h2>Medford</h2>"
+                    document.getElementById("email_info").innerHTML += "<p>E: staff@moonshoesmedford.com</p>"
+                    document.getElementById("email_info").innerHTML += "<h2>Boston</h2>"
+                    document.getElementById("email_info").innerHTML += "<p>E: staff@moonshoesboston.com</p>"
+                
+                    $("#go_button").click(contactForm);
+                    $("#back_button").click(back_to_contact)
+                
+                });
+
+                function contactForm() {
+                    $("#contact_form_info").hide();
+                    $("#contact_form_submit").show();
+
+                }
+
+                function back_to_contact() {
+                    $("#contact_form_info").show();
+                    $("#contact_form_submit").hide();
+                }
+
+               
+            </script>
+    </body>
+</html>
+
