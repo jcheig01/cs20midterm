@@ -5,6 +5,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
         <title>About Us</title>
+        <link rel="stylesheet" href="index.css">
         <link rel = "stylesheet" type = "text/css" href= "about_contact.css">
 
         <style>
@@ -14,13 +15,7 @@
             /* Header */
 
             body {
-                background-color: black;
-            }
-            .header {
-                background-color: white;
-                height: auto;
-                margin: auto;
-                padding-bottom: 15px;
+                background: url('space.jpg')
             }
 
             /* About Us Page Starts here */
@@ -35,7 +30,7 @@
                 padding-bottom: 30px;
             }
 
-            .ourSomething h1 {
+            .ourSomething h2 {
                 -webkit-text-stroke: 0.1px pink;
                 font-size: 45px;
                 color: rgb(240, 204, 47);
@@ -99,10 +94,24 @@
         </style>
     </head>
     <body>
+        <header>
+            <h1>MoonShoes</h1>
+            <hr>
+        </header>
+        <nav>
+            <ul class="nav">
+                <li class="nav-list"><a href="index.html">Home</a></li>
+                <li class="nav-list"><a href="login.html">Login</a></li>
+                <li class="nav-list"><a class="curr" href="about.html">About Us</a></li>
+                <li class="nav-list"><a href="mens.html">Men's</a></li>
+                <li class="nav-list"><a href="womens.html">Women's</a></li>
+                <li class="nav-list"><a href="contact.html">Contact Us</a></li>
+                <li class="nav-list"><a href="faq.html">FAQs</a></li>
+            </ul>
+        </nav>
         <!--Mini Nav Bar-->
         <body>
-            <div class = "header">header will be placed here</div>
-            <div class = "nav">
+            <div class = "mininav">
                 <ul class = "nav_li">
                     <li><input type = "button" id = "mission_button" value = "Our Mission"></li>
                     <li><input type = "button" id = "locations_button" value = "Our Stores"></li>
@@ -118,7 +127,7 @@
                 <!--Our Mission Page-->
                 <div class = "info_wrapper" id = "i_wrapper">
                     <div class = "ourSomething" id = "slide_outer">
-                        <h1>Our Mission</h1>
+                        <h2>Our Mission</h2>
                         <h3>"One small step for you, one big for human kind"</h3>
                         <p>This company was started by four college students with an out of this world vision for the future of street wear shoes. 
                            We imagined a world where shoes are not only of the highest quality and artistry, but also contribute to a good cause.
@@ -130,7 +139,7 @@
                     </div>
                 <!--Store Info Page-->
                 <div class = "ourSomething" id = "slide_inner">
-                    <h1>Our Stores</h1>
+                    <h2>Our Stores</h2>
                     <!--Mini Stores Nav Bar-->
                     <div class = "nav_locations">
                         <ul class = "nav_loc">
