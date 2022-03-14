@@ -164,7 +164,7 @@
                                 <label for="subject">Contact Reason</label>
                                 <textarea id="contact_reason" name="contact_reason" style="height:100px"></textarea>
                             
-                                <input type="submit" value="Submit">
+                                <input id="formsubmit" type="submit" value="Submit">
                             </form>
                         </div>
                     </div>
@@ -195,7 +195,10 @@
                     document.getElementById("email_info").innerHTML += "<p>E: staff@moonshoesboston.com</p>"
                 
                     $("#go_button").click(contactForm);
-                    $("#back_button").click(back_to_contact)
+                    $("#back_button").click(back_to_contact);
+                    $("#formsubmit").click(function submitted () {
+                        document.getElementById("contact_form_submit").innerHTML = "Form Submitted!"
+                    });
                 
                 });
 
