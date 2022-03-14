@@ -72,7 +72,7 @@
             }
             
             /* Map Size */
-            #map, #map2 {
+            #map img, #map2 img {
                 height: 300px;
                 width: 450px;
 
@@ -152,23 +152,19 @@
                     <h3>Our largest and first store is located in Medford, MA</h3>
                     <div id = "map_info">
                         <div id = "store_adress"></div>
-<!--                         <div id= "map"></div> -->
+                        <div id= "map"><img src="medfordmap.png"></div>
                     </div> 
                 </div>
                 <div id = "bostonStore">
                     <h3>Our new store is located in Boston, MA</h3>
                     <div id = "map_info">
                         <div id = "store_adress2"></div>
-<!--                         <div id= "map2"></div> -->
+                        <div id= "map2"><img src="bostonmap.png"></div>
                     </div> 
                 </div>
                 </div>
             </div>
         </div>
-                <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-<!--                 <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-cQbwK6yDMTcNW-EJifv80UvmO7rcPdM&callback=initMap&libraries=&v=weekly"
-                async> </script> -->
                     
             <!--footer-->
             <footer> 
@@ -265,27 +261,6 @@
                         $("#mission_button").removeClass("active");
                     }
                 }
-
-//                 function initMap() {
-//                 const medford = { lat: 42.406491, lng: -71.118007};
-//                 const boston = { lat: 42.361145, lng: -71.057083}
-//                 const map = new google.maps.Map(document.getElementById("map"), {
-//                     zoom: 18,
-//                     center: medford,
-//                 });
-//                 const map2 = new google.maps.Map(document.getElementById("map2"), {
-//                     zoom: 18,
-//                     center: boston,
-//                 });
-//                 const marker = new google.maps.Marker({
-//                     position: medford,
-//                     map: map,
-//                 });
-//                 const marker2 = new google.maps.Marker({
-//                     position: boston,
-//                     map: map2,
-//                 });
-//                 }
 
                 function initPage() {
                     $("#slide_inner").hide();
