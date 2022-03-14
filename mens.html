@@ -25,39 +25,47 @@
          .product-filter {
          display: flex;
          color: white;
+         padding: 30px;
          }
+         
          .product-filter h1 {
          flex-grow: 1;
+         font-family: 'Sansita Swashed', cursive;
          }
+         
          .sort {
          display: flex;
+         color: white;
+         font-family: 'Titillium Web', sans-serif;
          }
+         
          .collection-sort {
          display: flex;
          flex-direction: column;
+         font-family: 'Titillium Web', sans-serif;
          }
+         
          .products {
          display: flex;
          flex-wrap: wrap;
          }
+         
          .product-card {
          padding: 2%;
          flex-grow: 1;
          flex-basis: 16%;
          .product-image img {
          max-width: 100%;
-         }    
+         }   
+            
          @media (max-width: 480px) {
-         .product-filter {
-         flex-direction: column;
-         }
-         .sort {
-         align-self: flex-start;
-         }
-         }
-         }
-         display: flex; /* so child elements can use flexbox stuff too! */
-         }
+            .product-filter {
+            flex-direction: column;
+            }
+            .sort {
+            align-self: flex-start;
+            }
+            }
       </style>
    </head>
    <body>
@@ -110,7 +118,7 @@
                <img src="sneakers/s1(1).png">
             </div>
             <div class="product-info">
-               <h5>Winter Jacket</h5>
+               <h5>White Sneaker</h5>
                <h6>$99.99</h6>
             </div>
          </div>
