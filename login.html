@@ -60,9 +60,15 @@
     <script language="javascript">
         $("form").submit(function(e) {
             console.log(document.getElementById("username").value);
-            if (!document.getElementById("password").value) {
+            if (!document.getElementById("username").value) {
+                document.getElementById("error").innerHTML = "Empty Username!";
+            }
+
+            else if (!document.getElementById("password").value) {
                 document.getElementById("error").innerHTML = "Empty Password!";
-            } else {
+            } 
+
+            else {
                 document.getElementById("welcome").innerHTML = "Welcome " + document.getElementById("username").value + "!";
                 document.getElementById("welcome").style.fontSize = "150px"
                 document.getElementById("emoji").innerHTML = "&#128540";
