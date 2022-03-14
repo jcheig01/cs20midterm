@@ -37,7 +37,8 @@
         <article>
             <section>
                 <div class="content">
-                    <p id="welcome" style="color: white;"></p>
+                    <p id="welcome" style="color: white; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"></p>
+                    <p id="emoji"></p>
                     <form id="login">
                         <label for="username" style="color: white;">Username</label><br>
                         <input type="text" id="username" name="username"><br>
@@ -63,6 +64,9 @@
                 document.getElementById("error").innerHTML = "Empty Password!";
             } else {
                 document.getElementById("welcome").innerHTML = "Welcome " + document.getElementById("username").value + "!";
+                document.getElementById("welcome").style.fontSize = "150px"
+                document.getElementById("emoji").innerHTML = "&#128540";
+                document.getElementById("emoji").style.fontSize = "100px"
                 $("#login").hide();
             }
             
