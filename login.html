@@ -43,6 +43,7 @@
                         <input type="text" id="username" name="username"><br>
                         <label for="password" style="color: white;">Password</label><br>
                         <input type="password" id="password" name="password"><br><br>
+                        <p id="error" style="color: white;"></p>
                         <input type="submit" value="Log In">
                     </form>
                </div>
@@ -54,8 +55,14 @@
     </body>
     <script language="javascript">
         $("form").submit(function(e) {
-            document.getElementById("welcome").innerHTML = "Welcome " + document.getElementById("username").value + "!";
-            $("#login").hide();
+            console.log(document.getElementById("username").value);
+            if (!document.getElementById("password").value) {
+                document.getElementById("error").innerHTML = "Empty Password!";
+            } else {
+                document.getElementById("welcome").innerHTML = "Welcome " + document.getElementById("username").value + "!";
+                $("#login").hide();
+            }
+            
             return false;
         })
     </script>
