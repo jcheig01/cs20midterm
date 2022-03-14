@@ -162,7 +162,8 @@
                                 </select>
                                 
                                 <label for="last_name">Email</label>
-                                <input type="text" id="email" name="email">
+                                <input type="text" id="emailinput" name="email">
+                                <p id="emailwarning"></p>
                             
                                 <label for="subject">Contact Reason</label>
                                 <textarea id="contact_reason" name="contact_reason" style="height:100px"></textarea>
@@ -200,7 +201,14 @@
                     $("#go_button").click(contactForm);
                     $("#back_button").click(back_to_contact);
                     $("#formsubmit").click(function submitted () {
-                        document.getElementById("contact_form_submit").innerHTML = "Form Submitted!"
+                        console.log(document.getElementById("emailinput").value);
+                        if (validateEmail(document.getElementById("emailinput").value)) {
+                            document.getElementById("contact_form_submit").innerHTML = "Form Submitted!";
+                        } else {
+                            document.getElementById("emailwarning").innerHTML = "Not an email!";
+                            return false;
+                        }
+                        
                     });
                 
                 });
@@ -215,6 +223,14 @@
                     $("#contact_form_info").show();
                     $("#contact_form_submit").hide();
                 }
+
+                const validateEmail = (email) => {
+                    return String(email)
+                        .toLowerCase()
+                        .match(
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        );
+                };
 
                
             </script>
