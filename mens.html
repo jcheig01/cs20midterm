@@ -1,45 +1,107 @@
+
+
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">	
-        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <title>Mens</title>
+      <link rel = "stylesheet" type = "text/css" href= "about_contact.css">
+      <link rel="stylesheet" href="index.css">
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Sansita+Swashed:wght@300&family=Smooch+Sans:wght@100&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nothing+You+Could+Do&family=Open+Sans+Condensed:wght@300&family=Shizuru&family=Tillana&family=Titillium+Web:wght@200&display=swap');
+         body {
+         background: url('space.jpg')
+         }
+         .header {
+         background-color: white;
+         height: auto;
+         margin: auto;
+         padding-bottom: 15px;
+         }
+         .product-filter {
+         display: flex;
+         }
+         .product-filter h1 {
+         flex-grow: 1;
+         }
+         .sort {
+         display: flex;
+         }
+         .collection-sort {
+         display: flex;
+         flex-direction: column;
+         }
+         .products {
+         display: flex;
+         flex-wrap: wrap;
+         }
+         .product-card {
+         padding: 2%;
+         flex-grow: 1;
+         flex-basis: 16%;
+         .product-image img {
+         max-width: 100%;
+         }    
+         @media (max-width: 480px) {
+         .product-filter {
+         flex-direction: column;
+         }
+         .sort {
+         align-self: flex-start;
+         }
+         }
+         }
+         display: flex; /* so child elements can use flexbox stuff too! */
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <h1>MoonShoes</h1>
+         <hr>
+      </header>
+      <div style="z-index: 2;">
+      <nav>
+         <ul class="nav">
+            <li class="nav-list"><a class="curr" href="index.html">Home</a></li>
+            <li class="nav-list"><a href="login.html">Login</a></li>
+            <li class="nav-list"><a href="about.html">About Us</a></li>
+            <li class="nav-list"><a href="mens.html">Men's</a></li>
+            <li class="nav-list"><a href="womens.html">Women's</a></li>
+            <li class="nav-list"><a href="contact.html">Contact Us</a></li>
+            <li class="nav-list"><a href="faq.html">FAQs</a></li>
+         </ul>
+      </nav>
+      <nav class="product-filter">
+         <h1>Jackets</h1>
+         <div class="sort">
+            <div class="collection-sort">
+               <label>Filter by:</label>
+               <select>
+                  <option value="/">All Jackets</option>
+               </select>
+            </div>
+            <div class="collection-sort">
+               <label>Sort by:</label>
+               <select>
+                  <option value="/">Featured</option>
+               </select>
+            </div>
+         </div>
+      </nav>
+      <section class="products">
+         <div class="product-card">
+            <div class="product-image">
+               <img src="assets/img/coat-01.jpeg">
+            </div>
+            <div class="product-info">
+               <h5>Winter Jacket</h5>
+               <h6>$99.99</h6>
+            </div>
+         </div>
+         <!-- more products -->
+      </section>
+   </body>
 
-        <title>Mens</title>
-        <link rel = "stylesheet" type = "text/css" href= "about_contact.css">
-        <link rel="stylesheet" href="index.css">
-
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Sansita+Swashed:wght@300&family=Smooch+Sans:wght@100&display=swap');
-            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nothing+You+Could+Do&family=Open+Sans+Condensed:wght@300&family=Shizuru&family=Tillana&family=Titillium+Web:wght@200&display=swap');
-            
-            body {
-                background: url('space.jpg')
-            }
-            .header {
-                background-color: white;
-                height: auto;
-                margin: auto;
-                padding-bottom: 15px;
-            }
-        </style>
-        
-        
-    </head>
-    <body>
-        <header>
-            <h1>MoonShoes</h1>
-            <hr>
-        </header>
-        <div style="z-index: 2;">
-            <nav>
-            <ul class="nav">
-                <li class="nav-list"><a class="curr" href="index.html">Home</a></li>
-                <li class="nav-list"><a href="login.html">Login</a></li>
-                <li class="nav-list"><a href="about.html">About Us</a></li>
-                <li class="nav-list"><a href="mens.html">Men's</a></li>
-                <li class="nav-list"><a href="womens.html">Women's</a></li>
-                <li class="nav-list"><a href="contact.html">Contact Us</a></li>
-                <li class="nav-list"><a href="faq.html">FAQs</a></li>
-            </ul>
-         </nav>
-    </body>
