@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">	
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <title>About</title>
+        <link rel="stylesheet" href="index.css">
+        <link rel = "stylesheet" type = "text/css" href= "about_contact.css">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Sansita+Swashed:wght@300&family=Smooch+Sans:wght@100&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nothing+You+Could+Do&family=Open+Sans+Condensed:wght@300&family=Shizuru&family=Tillana&family=Titillium+Web:wght@200&display=swap');
+
+            /* Header */
+
+            body {
+                background: url('space.jpg')
+            }
+
+            /* About Page Starts here */
+            
+            /* General Text Wrapper */
+            .content_wrapper {
+                height: auto;
+                margin: auto;
+                width: 60%;
+                /* background-color: black; */
+                padding: 3% 6%;
+                padding-bottom: 30px;
+            }
+
+            .ourSomething h2 {
+                -webkit-text-stroke: 0.1px pink;
+                font-size: 45px;
+                color: rgb(240, 204, 47);
+                font-family: 'Sansita Swashed', cursive;
+                
+            }
+
+            .ourSomething h3 {
+                font-size: 28px; 
+                text-align: center; 
+                color: white;
+                font-family: 'Titillium Web', sans-serif;
+            }
+
+            .ourSomething p {
+                font-size: 18px;
+                color: white;
+                font-family: 'Titillium Web', sans-serif;
+            }
+            
+            /* Button Effect */
+            #slide_left, #slide_right {
+                float: left;
+                cursor: pointer;
+            }
+
+            .button_wrapper input[type = button] {
+                text-decoration: none;
+                color:aliceblue;
+                padding: 12px 8px;
+                font-size: 12px;
+                background-color: black;
+            }
+
+            .button_wrapper {
+                display: inline-flex;
+                justify-content: center;
+                padding-bottom: 10px;
+            }
+            
+            /* Map Size */
+            #map img, #map2 img {
+                height: 300px;
+                width: 450px;
+
+            }
+
+            #store_adress, #store_adress2 {
+                font-size: 18px;
+                color: white;
+                font-family: 'Titillium Web', sans-serif;
+                padding-right: 50px;
+
+            }
+
+            #map_info {
+                display: inline-flex;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href='index.html' style='text-decoration: none;'><h1>MoonShoes</h1></a>
+            <hr>
+        </header>
+        <nav>
+            <ul class="nav">
+                <li class="nav-list"><a href="index.html">Home</a></li>
+                <li class="nav-list"><a href="login.html">Login</a></li>
+                <li class="nav-list"><a href="about.html">About</a></li>
+                <li class="nav-list"><a class="curr" href="location.html">Locations</a></li>
+                <li class="nav-list"><a href="mens.html">Men's</a></li>
+                <li class="nav-list"><a href="womens.html">Women's</a></li>
+                <li class="nav-list"><a href="contact.html">Contact</a></li>
+                <li class="nav-list"><a href="faq.html">FAQs</a></li>
+            </ul>
+        </nav>
+        <!--Mini Nav Bar-->
+        <body>
+            <!--Slide Page Bar--> 
+            <div class = "content_wrapper" id = "c_wrapper">
+                <!--Store Info Page-->
+                <div class = "ourSomething" id = "slide_inner">
+                    <h2>Our Stores</h2>
+                    <!--Mini Stores Nav Bar-->
+                    <div class = "nav_locations">
+                        <ul class = "nav_loc">
+                            <li><input type = "button" id = "medford_b" value = "Medford"></li>
+                            <li><input type = "button" id = "boston_b" value = "Boston">></li>
+                        </ul>
+                    </div>
+                <!--Stores Location Page-->
+                <div id = "medfordStore">
+                    <h3>Our largest and first store is located in Medford, MA</h3>
+                    <div id = "map_info">
+                        <div id = "store_adress"></div>
+                        <div id= "map"><img src="medfordmap.png"></div>
+                    </div> 
+                </div>
+                <div id = "bostonStore">
+                    <h3>Our new store is located in Boston, MA</h3>
+                    <div id = "map_info">
+                        <div id = "store_adress2"></div>
+                        <div id= "map2"><img src="bostonmap.png"></div>
+                    </div> 
+                </div>
+                </div>
+        </div>
+                    
+            <!--footer-->
+            <footer> 
+                <hr>
+                This website is for academic purpose. 2022 Moon Shoes All Rights Reserved
+            </footer>
+
+
+
+            <script language = "javascript">
+                let arr = ["#bostonStore", "#medfordStore"];
+                var currIndex,targetIndex;
+
+                $(document).ready( function () {
+                    //Initialize front pages
+                   initPage();
+
+                    //Store adress
+                    document.getElementById("store_adress").innerHTML = "66 Winthrop St. Medford, MA, 02155, USA, " + "<br>"
+                                + "Earth, Solar System, Milky Way Galaxy," + "<br>"
+                                + "Kanaikea Supercluster." + "<br>";
+
+                    document.getElementById("store_adress2").innerHTML = "7588 West Birchwood Ave, Largo, FL," + "<br>" + "33771, USA,"
+                                + "Sun, Solar System" + "<br>"
+                                + "Laniakea Supercluster." + "<br>";
+                    
+                    currIndex = 0;
+
+                    //Change slides
+                    $("#boston_b").click(function () {
+                        currIndex = 1;
+                        targetIndex = 0;
+                        next_slide(arr[targetIndex],arr[currIndex]);
+                    });
+
+                    $("#medford_b").click(function () {
+                        currIndex = 0;
+                        targetIndex = 1;
+                        next_slide(arr[targetIndex],arr[currIndex]);
+                    });
+
+
+                });
+
+                    //Maintain selected page effect
+                function active_button (x) {
+                    if (x == "#bostonStore") {
+                        $("#boston_b").toggleClass("active");
+                        $("#medford_b").removeClass("active");
+                    }
+                    if (x == "#medfordStore") {
+                        $("#medford_b").toggleClass("active");
+                        $("#boston_b").removeClass("active");
+                    }
+                }
+
+                function next_slide (slide1, slide2) {
+                    $(slide2).fadeOut(500,function () {
+                        fadeInImg(slide1)}) 
+                }
+
+                function fadeInImg(slide1) {
+                    currIndex = targetIndex;
+                    var x = arr[currIndex];
+                    active_button(x);
+                    $(slide1).fadeIn(500);
+            }
+
+                function initPage() {
+                    $("#bostonStore").hide();
+                    $("#medfordStore").show();
+                    $("#medford_b").toggleClass("active");
+
+                }
+
+
+            </script>
+    </body>
+</html>
+
