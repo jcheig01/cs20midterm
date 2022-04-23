@@ -56,6 +56,20 @@
                 color: white;
 
             }
+
+            .biggerbox {
+                display: inline-block;
+                justify-content: center;
+                text-align: center;
+                border: 2px solid white;
+                height: auto;
+                width: 95%;
+                margin: 20px;
+                border-radius: 25px;
+                font-family:'Titillium Web', sans-serif; 
+                color: white;
+            }
+
             .box h1 {
                 font-size: 28px; 
             }
@@ -118,10 +132,11 @@
             <ul class="nav">
                 <li class="nav-list"><a href="index.html">Home</a></li>
                 <li class="nav-list"><a href="login.html">Login</a></li>
-                <li class="nav-list"><a href="about.html">About Us</a></li>
+                <li class="nav-list"><a href="about.html">About</a></li>
+                <li class="nav-list"><a href="location.html">Locations</a></li>
                 <li class="nav-list"><a href="mens.html">Men's</a></li>
                 <li class="nav-list"><a href="womens.html">Women's</a></li>
-                <li class="nav-list"><a class="curr" href="contact.html">Contact Us</a></li>
+                <li class="nav-list"><a class="curr" href="contact.html">Contact</a></li>
                 <li class="nav-list"><a href="faq.html">FAQs</a></li>
             </ul>
         </nav>
@@ -144,36 +159,43 @@
                             <p>Please fill out a contact form</p>
                             <input type = "button" id = "go_button" value = "Go to contact form">
                         </div>
-                        <div id = "contact_form_submit">
-
-                            <input type = "button" id = "back_button" value = "&#8592">
-
-                            <form name = "contact_form_page" method = "post">
-                                <label for="first_name">First Name</label>
-                                <input type="text" id="fist_name" name="firstname">
-                            
-                                <label for="last_name">Last Name</label>
-                                <input type="text" id="last_name" name="lastname">
-                            
-                                <label for="store">Store</label>
-                                <select id="store" name="store">
-                                  <option value="boston">Boston</option>
-                                  <option value="medford">Medford</option>
-                                </select>
-                                
-                                <label for="last_name">Email</label>
-                                <input type="text" id="emailinput" name="email">
-                                <p id="emailwarning"></p>
-                            
-                                <label for="subject">Contact Reason</label>
-                                <textarea id="contact_reason" name="contact_reason" style="height:100px"></textarea>
-                            
-                                <input id="formsubmit" type="submit" value="Submit">
-                            </form>
-                        </div>
                     </div>
                 </div> 
-            </div>       
+                <div id = "contact_form_submit">
+                    <div class = "biggerbox" >
+
+                    <input type = "button" id = "back_button" value = "&#8592">
+
+                    <form name = "contact_form_page" method = "post">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="fist_name" name="firstname">
+                        <p id="fnamewarning"></p>
+                    
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="lastname">
+                        <p id="lnamewarning"></p>
+                    
+                        <label for="store">Store</label><br>
+                        <select id="store" name="store">
+                          <option value="boston">Boston</option>
+                          <option value="medford">Medford</option>
+                        </select><br>
+                        
+                        <label for="email">Email</label><br>
+                        <input type="text" id="emailinput" name="email">
+                        <p id="emailwarning"></p>
+                    
+                        <label for="subject">Contact Reason</label><br>
+                        <textarea id="contact_reason" name="contact_reason" style="height:100px"></textarea>
+                        <p id="boxwarning"></p>
+
+                        <input id="formsubmit" type="submit" value="Submit">
+                    </form>
+                </div>    
+
+                </div>    
+            </div>
+                   
             <!--footer-->
             <footer> 
                 <hr>
@@ -201,12 +223,17 @@
                     $("#go_button").click(contactForm);
                     $("#back_button").click(back_to_contact);
                     $("#formsubmit").click(function submitted () {
-                        console.log(document.getElementById("emailinput").value);
-                        if (validateEmail(document.getElementById("emailinput").value)) {
-                            document.getElementById("contact_form_submit").innerHTML = "Form Submitted!";
-                        } else {
+                        if (!validateEmail(document.getElementById("emailinput").value)) {
                             document.getElementById("emailwarning").innerHTML = "Not an email!";
                             return false;
+                        } else if (isEmpty(document.getElementById("last_name").value)) {
+                            document.getElementById("lnamewarning").innerHTML = "No last name!";
+                            return false;
+                        } else if (isEmpty(document.getElementById("contact_reason").value)) {
+                            document.getElementById("boxwarning").innerHTML = "Please write contact reason!";
+                            return false;
+                        } else {
+                            alert("submitted!");
                         }
                         
                     });
@@ -214,8 +241,9 @@
                 });
 
                 function contactForm() {
-                    $("#contact_form_info").hide();
                     $("#contact_form_submit").show();
+                    $('html, body').animate({
+                         scrollTop: $("#contact_form_submit").offset().top}, 1000);
 
                 }
 
@@ -223,6 +251,8 @@
                     $("#contact_form_info").show();
                     $("#contact_form_submit").hide();
                 }
+                
+                const isEmpty = str => !str.trim().length;
 
                 const validateEmail = (email) => {
                     return String(email)
