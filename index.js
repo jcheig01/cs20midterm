@@ -15,31 +15,31 @@ function main()
         res.sendFile(path.join(__dirname+'/views/index.html'));
     });
 
-    router.get('/about', function(req, res) {
+    router.get('/about.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/about.html'));
     });
 
-    router.get('/location', function(req, res) {
+    router.get('/location.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/location.html'));
     });
 
-    router.get('/mens', function(req, res) {
+    router.get('/mens.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/mens.html'));
     });
 
-    router.get('/womens', function(req, res) {
+    router.get('/womens.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/womens.html'));
     });
 
-    router.get('/contact', function(req, res) {
+    router.get('/contact.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/contact.html'));
     });
 
-    router.get('/faq', function(req, res) {
+    router.get('/faq.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/faq.html'));
     });
 
-    router.get('/login', function(req, res) {
+    router.get('/login.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/login.html'));
     });
 
