@@ -7,11 +7,15 @@ const fs = require("fs");
 const path = require('path');
 
 
-const url = "mongodb+srv://Andy:cs20@cluster0.1aj3j.mongodb.net/stockticker?retryWrites=true&w=majority";  // connection string goes here
+const url = "mongodb+srv://Andy:cs20@cluster0.1aj3j.mongodb.net/moonshoes?retryWrites=true&w=majority";  // connection string goes here
 
 function main()
 {
     router.get('/', function(req, res) {
+        res.sendFile(path.join(__dirname+'/views/index.html'));
+    });
+
+    router.get('/index.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/index.html'));
     });
 
@@ -25,10 +29,24 @@ function main()
 
     router.get('/mens.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/mens.html'));
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            if (err) { return console.log(err); }
+            
+            var dbo = db.db("moonshoes");
+            var collection = dbo.collection('mens');
+            collection.find().toArray().then(function(arr) {console.log(arr)});
+        });
     });
 
     router.get('/womens.html', function(req, res) {
         res.sendFile(path.join(__dirname+'/views/womens.html'));
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            if (err) { return console.log(err); }
+            
+            var dbo = db.db("moonshoes");
+            var collection = dbo.collection('womens');
+            collection.find().toArray().then(function(arr) {console.log(arr)});
+        });
     });
 
     router.get('/contact.html', function(req, res) {
