@@ -120,7 +120,7 @@
          
          
       <section class="products">
-         <div class="product-card">
+         <!-- <div class="product-card">
             <div class="product-image">
                <img src="sneakers/s1(1).png">
             </div>
@@ -209,12 +209,16 @@
                <h5> PLUTO'S REVENGE W45</h5>
                <h6>$142,29</h6>
             </div>
-         </div>
+         </div> -->
       </section>
       <footer> 
                 <hr>
                 This website is for academic purpose. 2022 Moon Shoes All Rights Reserved
       </footer>
+      <script>
+         for (var i=0; i < 9; i++) {
+            document.getElementsByClassName('products')[0].innerHTML += '<div class="product-card"><div class="product-image"><img src="sneakers/s9(1).png"></div><div class="product-info"><h4> Metal-free Tanned Leather <h4><h5> PLUTO REVENGE W45</h5><h6>$142,29</h6></div></div>'
+         }
+     </script>
    </body>
 </html>
-
