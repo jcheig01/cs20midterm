@@ -1,1 +1,1 @@
-Hello! This is HTML. 
+<?php echo "Hello! This is HTML." ?>
