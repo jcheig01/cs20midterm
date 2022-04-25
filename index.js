@@ -3,7 +3,6 @@ const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
-const fs = require("fs");
 const path = require('path');
 
 
@@ -11,7 +10,20 @@ const url = "mongodb+srv://Andy:cs20@cluster0.1aj3j.mongodb.net/moonshoes?retryW
 
 function main()
 {
+    app.use(bodyParser.urlencoded(
+        { extended: true })); 
+
     router.get('/', function(req, res) {
+        res.sendFile(path.join(__dirname+'/views/index.html'));
+    });
+
+    router.post('/', function(req, res) {
+        console.log(req.body);
+        if (req.body.latitude) {
+            console.log(req.body.latitude);
+        } else {
+            console.log("latitude not found");
+        }
         res.sendFile(path.join(__dirname+'/views/index.html'));
     });
 
