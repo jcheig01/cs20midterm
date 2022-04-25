@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<title>Credit Card Info</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Sansita+Swashed:wght@300&family=Smooch+Sans:wght@100&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nothing+You+Could+Do&family=Open+Sans+Condensed:wght@300&family=Shizuru&family=Tillana&family=Titillium+Web:wght@200&display=swap');
+
+    /* Header */
+    
+    /* General Text Wrapper */
+
+    body {
+        background: url('space.jpg')
+    }
+
+    .entirewrapper {
+        padding-top: 100px;
+    }
+
+    .cardwrapper {
+        height: auto;
+        margin: auto;
+        width: 50%;
+        /* background-color: black; */
+        /* padding: 3% 6%; */
+        padding-bottom: 30px;
+        border: 2px solid white;
+        background: black;
+
+    }
+
+    .card {
+        display: flex;
+        justify-content: center;
+        color: white;
+        /* border-radius: 25px; */
+        font-family:'Titillium Web', sans-serif; 
+
+    }
+
+    h2 {
+        font-family:'Titillium Web', sans-serif; 
+        text-align: center;
+        color: white;
+    }
+
+    .row {
+        display: flex;
+        padding-bottom: 10px;
+    }
+
+    .holdername, .card-exp {
+        padding-right: 50px;
+    }
+
+    
+
+    .m_button {
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    #a_button {
+        color: black;
+        /* padding: 10px 20px; */
+        text-align: center;
+        font-family:'Titillium Web', sans-serif; 
+        
+        }
+
+    #a_button:hover {
+        background: rgba(221, 226, 221, 0.2);
+        color:white;
+        }
+
+    /* input[type=text] {
+        padding-right: 20px;
+    } */
+
+    @media (max-width: 800px) {
+        .row {
+            display: inline;
+        }
+    }
+
+    @media (max-height: 500px) {  
+                        
+    }
+
+
+</style>
+</head>
+
+<body>
+<script>
+
+// ADDED FROM HERE
+$(document).ready(function() {
+	submitOrder();
+})
+
+
+function submitOrder() {
+	$('input[type="button"]').click(function () {
+        var x = validation();
+        if (x) {
+            displayConfirmPurchasePage();	
+        }
+	})
+}
+
+function displayConfirmPurchasePage() {
+    alert("Payment Success");
+    $("#e_wrapper").hide();
+}
+
+function validation() {
+    if (checkLength(document.getElementById("hname").value,0)) {
+        document.getElementById("warning").innerHTML = "No Holder Name";
+        return false;
+    } else if (checkLength(document.getElementById("cc-cvc").value,0)) {
+        document.getElementById("warning").innerHTML = "No CVC";
+        return false;
+    } else if (!checkLength(document.getElementById("cc-cvc").value,4)) {
+        console.log("hi");
+        document.getElementById("warning").innerHTML = "Please enter 4-digit cvc";
+        return false;
+    } else if (checkLength(document.getElementById("cc-number").value,0)) {
+        document.getElementById("warning").innerHTML = "No Card Number";
+        return false;
+    } else if (!creditCardValidation(document.getElementById("cc-number").value)) {
+        console.log(document.getElementById("cc-number").value);
+        document.getElementById("warning").innerHTML = "Please enter a valid credit card number.";
+        return false;
+    } else if (checkLength(document.getElementById("cardexp").value,0)) {
+        document.getElementById("warning").innerHTML = "No Card Expiration Date";
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkLength(n, len) {
+    if (n.length == len) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function updateCardLogo(object) {
+    var temp = object.value;
+    // object.value = cardHide(object.value);
+    var x;
+    console.log(temp);
+        if ( temp.length == 16)
+        {
+           x = identifyCard(temp);
+           console.log(x);
+        }
+        if (x == 1) {
+            document.getElementById('master').style.opacity = "0.5";
+        } 
+        if (x == 2) {
+            document.getElementById('visa').style.opacity = "0.5";
+        } else if (x != 1 && x != 2){
+            document.getElementById('master').style.opacity = "1";
+            document.getElementById('visa').style.opacity = "1";
+
+        }
+}
+
+
+// function cardHide(card) {
+//   return card.replace(/.(?=.{0})/g, "•");
+// }
+
+function identifyCard(creditCradNum) {
+    var visaReg = /^4[0-9]{12}(?:[0-9]{3})?$/;
+    var masterReg = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
+    if(creditCradNum.match(visaReg)){
+        return 1;
+    }
+    if(creditCradNum.match(masterReg)){
+        return 2;
+    }
+}
+
+function creditCardValidation(creditCradNum)
+{
+    var x = identifyCard(creditCradNum);
+    if ((creditCradNum.length == 16) && (x == 1 || x == 2)) {
+        console.log("true");
+        return true;
+    } else {
+        console.log("false");
+        return false;
+    }
+}   
+
+</script>
+<div class = "entirewrapper" id = "e_wrapper">
+<div class = "cardwrapper">
+    <div class="start">
+        <h2>Confirm Purchase</h2> 
+    </div>
+    <div class="card">
+    <div class="card-info">
+        <div class="row">
+            <!-- card holder name --> 
+            <div class = "holdername">
+                <label for="numeric">CARD HOLDER NAME</label> <br>
+                <input type="text" id = "hname"> <br>
+            </div>
+            <!-- card cvc --> 
+            <div class = "cvcinfo">
+                <label for="cc-cvc">CVC</label> <br>
+                <input id="cc-cvc" type="tel" placeholder="••••"> <br>
+            </div>
+        </div>
+        <div class="row">
+         <!-- card number -->
+        <div class = "card-number">
+        <label for="cc-number">CARD NUMBER</label><br>
+        <input id="cc-number" type="tel" onkeydown = "updateCardLogo(this);" onchange="updateCardLogo(this);" placeholder="•••• •••• •••• ••••"><br>
+        </div>
+        </div>
+        <!-- card exp --> 
+        <div class = "row">
+        <div class = "card-exp">
+            <label for="cardexp">EXP</label> <br>
+            <input id="cardexp" type="tel" placeholder="•• / ••"><br>
+        </div>
+        <div class = "card_img">
+            <br>
+            <img id = "visa" src= "visa.png"> 
+            <img id = "master" src= "master.png"> 
+        </div>
+    </div>
+    <p id="warning"></p>
+    <div class = "m_button">
+    <input value="MAKE PAYMENT" type="button" id = "a_button">
+    </div>    
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
