@@ -1,4 +1,5 @@
-<nav>
+<?php echo 
+"<nav>
     <ul class="nav">
       <li class="nav-list"><a href="index.html">Home</a></li>
       <li class="nav-list"><a href="login.html">Login</a></li>
@@ -10,3 +11,5 @@
       <li class="nav-list"><a href="faq.html">FAQs</a></li>
     </ul>
   </nav>
+";
+?>
