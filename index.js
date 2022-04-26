@@ -10,6 +10,8 @@ const url = "mongodb+srv://Andy:cs20@cluster0.1aj3j.mongodb.net/moonshoes?retryW
 
 function main()
 {
+    var recommend;
+
     app.use(bodyParser.urlencoded(
         { extended: true })); 
     app.set('views', path.join(__dirname, 'views'));
@@ -43,18 +45,16 @@ function main()
                     console.log('Unable to connect to Forecast API'); 
                 } 
                 else { 
-                    if (parseFloat(response.body.main.temp) > 280) {
-                        res.render('summer');
+                    if (parseFloat(response.body.main.temp) > 280) { 
+                        recommend = "summer";
                     } else {
-                        res.render('winter');
+                        recommend = "winter";
                     }
                 } 
             }) 
         }
 
         forecast(latitude, longitude); 
-
-        res.render('index');
     });
 
     app.get('/index', function(req, res) {
@@ -92,26 +92,29 @@ function main()
         res.render('womens');
     });
 
-    app.get('/summer', function(req, res) {
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
-            if (err) { return console.log(err); }
-            
-            var dbo = db.db("moonshoes");
-            var collection = dbo.collection('mens');
-            collection.find({weather:"summer"}).toArray().then(function(arr) {console.log(arr)});
-        });
-        res.render('mens');
-    });
+    app.get('/recommend', function(req, res) {
 
-    app.get('/winter', function(req, res) {
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
-            if (err) { return console.log(err); }
-            
-            var dbo = db.db("moonshoes");
-            var collection = dbo.collection('mens');
-            collection.find({weather:"winter"}).toArray().then(function(arr) {console.log(arr)});
-        });
-        res.render('winter');
+        if (recommend == "winter") {
+            MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+                if (err) { return console.log(err); }
+                
+                var dbo = db.db("moonshoes");
+                var collection = dbo.collection('mens');
+                collection.find({weather:"winter"}).toArray().then(function(arr) {console.log(arr)});
+            });
+            res.render('recommend');
+        } else if (recommend == "summer") {
+            MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+                if (err) { return console.log(err); }
+                
+                var dbo = db.db("moonshoes");
+                var collection = dbo.collection('mens');
+                collection.find({weather:"summer"}).toArray().then(function(arr) {console.log(arr)});
+            });
+            res.render('recommend');
+        } else {
+            res.render('index');
+        }
     });
 
     app.get('/contact', function(req, res) {

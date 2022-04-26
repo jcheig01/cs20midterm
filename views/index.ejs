@@ -59,11 +59,11 @@
                 margin: 0px 0px 0px 0px;
             }
 
-            .rec {
+            .rec, .followup {
                 text-align: center;
             }
 
-            #button {
+            #button, #recommend {
                 background-color: grey;/* Green */
                 border: none;
                 color: white;
@@ -106,12 +106,15 @@
                 <p>one small step for you, one big step for human kind.</p>
             </div>
         </div>
-        <div class="rec">
+        <div class="rec" style="visibility:hidden;">
             <form action="/" method="POST">
                 <input type="hidden" id="latitude" name="latitude" value="">
                 <input type="hidden" id="longitude" name="longitude" value="">
-                <button type="submit" id="button">GET RECOMMENDATION!</button>
+                <button type="submit" id="button">Want Recommendation?</button>
             </form>
+        </div>
+        <div class="followup" style="visibility:hidden;">
+            <a href="recommend"><button id="recommend">Click Here!</button></a>
         </div>
         
         <footer style="padding-top: 400px;"> 
@@ -135,10 +138,23 @@
                 console.log("Geolocation is not supported by this browser.");
             }
             
+            var first = true;
+
             function showPosition(position) {
-                document.getElementById("latitude").value = position.coords.latitude;
-                document.getElementById("longitude").value = position.coords.longitude;
+                if (first) {
+                    document.getElementById("latitude").value = position.coords.latitude;
+                    document.getElementById("longitude").value = position.coords.longitude;
+                    $('.rec').css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 300);
+                    first = false;
+                }
             }
+
+            $(document).ready(function() {
+                $("#button").click(function(){
+                    $('.rec').hide();
+                    $('.followup').css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 300);
+                }); 
+            });
         </script>
     </body>
 </html>
