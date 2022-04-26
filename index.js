@@ -74,8 +74,8 @@ function main()
             if (err) { return console.log(err); }
             
             var dbo = db.db("moonshoes");
-            var collection = dbo.collection('mens');
-            collection.find().toArray().then(function(arr) {console.log(arr); res.render('mens', {query: arr});});
+            var collection = dbo.collection('shoes');
+            collection.find({gender:"mens"}).toArray().then(function(arr) {console.log(arr); res.render('mens', {query: arr});});
         });
 
     });
@@ -85,11 +85,9 @@ function main()
             if (err) { return console.log(err); }
             
             var dbo = db.db("moonshoes");
-            var collection = dbo.collection('womens');
-            collection.find().toArray().then(function(arr) {console.log(arr); res.render('womens', {query: arr});});
+            var collection = dbo.collection('shoes');
+            collection.find({gender:"womens"}).toArray().then(function(arr) {console.log(arr); res.render('womens', {query: arr});});
         });
-
-        res.render('womens');
     });
 
     app.get('/recommend', function(req, res) {
@@ -99,19 +97,17 @@ function main()
                 if (err) { return console.log(err); }
                 
                 var dbo = db.db("moonshoes");
-                var collection = dbo.collection('mens');
-                collection.find({weather:"winter"}).toArray().then(function(arr) {console.log(arr)});
+                var collection = dbo.collection('shoes');
+                collection.find({weather:"winter"}).toArray().then(function(arr) {console.log(arr); res.render('recommend', {query: arr});});
             });
-            res.render('recommend');
         } else if (recommend == "summer") {
             MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
                 if (err) { return console.log(err); }
                 
                 var dbo = db.db("moonshoes");
-                var collection = dbo.collection('mens');
-                collection.find({weather:"summer"}).toArray().then(function(arr) {console.log(arr)});
+                var collection = dbo.collection('shoes');
+                collection.find({weather:"summer"}).toArray().then(function(arr) {console.log(arr); res.render('recommend', {query: arr});});
             });
-            res.render('recommend');
         } else {
             res.render('index');
         }
