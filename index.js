@@ -43,7 +43,11 @@ function main()
                     console.log('Unable to connect to Forecast API'); 
                 } 
                 else { 
-                    console.log("Temperature: " + response.body.main.temp); 
+                    if (parseFloat(response.body.main.temp) > 280) {
+                        res.render('summer');
+                    } else {
+                        res.render('winter');
+                    }
                 } 
             }) 
         }
@@ -71,9 +75,9 @@ function main()
             
             var dbo = db.db("moonshoes");
             var collection = dbo.collection('mens');
-            collection.find().toArray().then(function(arr) {console.log(arr)});
+            collection.find().toArray().then(function(arr) {console.log(arr); res.render('mens', {query: arr});});
         });
-        res.render('mens');
+
     });
 
     app.get('/womens', function(req, res) {
@@ -82,10 +86,32 @@ function main()
             
             var dbo = db.db("moonshoes");
             var collection = dbo.collection('womens');
-            collection.find().toArray().then(function(arr) {console.log(arr)});
+            collection.find().toArray().then(function(arr) {console.log(arr); res.render('womens', {query: arr});});
         });
 
         res.render('womens');
+    });
+
+    app.get('/summer', function(req, res) {
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            if (err) { return console.log(err); }
+            
+            var dbo = db.db("moonshoes");
+            var collection = dbo.collection('mens');
+            collection.find({weather:"summer"}).toArray().then(function(arr) {console.log(arr)});
+        });
+        res.render('mens');
+    });
+
+    app.get('/winter', function(req, res) {
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            if (err) { return console.log(err); }
+            
+            var dbo = db.db("moonshoes");
+            var collection = dbo.collection('mens');
+            collection.find({weather:"winter"}).toArray().then(function(arr) {console.log(arr)});
+        });
+        res.render('winter');
     });
 
     app.get('/contact', function(req, res) {
