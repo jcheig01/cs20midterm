@@ -18,9 +18,11 @@
   "homepage": "https://github.com/jcheig01/cs20midterm#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "ejs": "^3.1.7",
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "mongodb": "^4.5.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.88.2"
   }
 }

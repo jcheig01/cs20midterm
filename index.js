@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const path = require('path');
+const request = require('request'); 
 
 
 const url = "mongodb+srv://Andy:cs20@cluster0.1aj3j.mongodb.net/moonshoes?retryWrites=true&w=majority";  // connection string goes here
@@ -12,35 +12,60 @@ function main()
 {
     app.use(bodyParser.urlencoded(
         { extended: true })); 
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'ejs');
 
-    router.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/index.html'));
+    app.get('/', function(req, res) {
+        res.render('index');
     });
 
-    router.post('/', function(req, res) {
+    app.post('/', function(req, res) {
+        var latitude;
+        var longitude;
+
         console.log(req.body);
-        if (req.body.latitude) {
-            console.log(req.body.latitude);
+        if (req.body.latitude && req.body.latitude) {
+            latitude = req.body.latitude;
+            longitude = req.body.longitude;
         } else {
             console.log("latitude not found");
         }
-        res.sendFile(path.join(__dirname+'/views/index.html'));
+
+        var API_KEY = 'b8c0e6f2d0bfa0d70e82c0d934973f63'; 
+        
+        const forecast = function (latitude, longitude) { 
+        
+            var url = `http://api.openweathermap.org/data/2.5/weather?`
+                        +`lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+        
+            request({ url: url, json: true }, function (error, response) { 
+                if (error) { 
+                    console.log('Unable to connect to Forecast API'); 
+                } 
+                else { 
+                    console.log("Temperature: " + response.body.main.temp); 
+                } 
+            }) 
+        }
+
+        forecast(latitude, longitude); 
+
+        res.render('index');
     });
 
-    router.get('/index.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/index.html'));
+    app.get('/index', function(req, res) {
+        res.render('index');
     });
 
-    router.get('/about.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/about.html'));
+    app.get('/about', function(req, res) {
+        res.render('about');
     });
 
-    router.get('/location.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/location.html'));
+    app.get('/location', function(req, res) {
+        res.render('location');
     });
 
-    router.get('/mens.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/mens.html'));
+    app.get('/mens', function(req, res) {
         MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
             if (err) { return console.log(err); }
             
@@ -48,10 +73,10 @@ function main()
             var collection = dbo.collection('mens');
             collection.find().toArray().then(function(arr) {console.log(arr)});
         });
+        res.render('mens');
     });
 
-    router.get('/womens.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/womens.html'));
+    app.get('/womens', function(req, res) {
         MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
             if (err) { return console.log(err); }
             
@@ -59,21 +84,22 @@ function main()
             var collection = dbo.collection('womens');
             collection.find().toArray().then(function(arr) {console.log(arr)});
         });
+
+        res.render('womens');
     });
 
-    router.get('/contact.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/contact.html'));
+    app.get('/contact', function(req, res) {
+        res.render('contact');
     });
 
-    router.get('/faq.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/faq.html'));
+    app.get('/faq', function(req, res) {
+        res.render('faq');
     });
 
-    router.get('/login.html', function(req, res) {
-        res.sendFile(path.join(__dirname+'/views/login.html'));
+    app.get('/login', function(req, res) {
+        res.render('login');
     });
 
-    app.use('/', router);
     app.listen(process.env.port || 3000);
 }
 
