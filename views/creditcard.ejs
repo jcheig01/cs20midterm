@@ -285,9 +285,10 @@ function creditCardValidation(creditCradNum)
 
 function addPrice() {
     var p_list = document.getElementsByClassName("price");
+    var q_list = document.getElementsByClassName("quantity");
     var total = 0;
     for (var i=0; i < p_list.length; i++) {
-        total += parseFloat(p_list[i].innerHTML);
+        total += parseFloat(p_list[i].innerHTML) * parseInt(q_list[i].innerHTML);
     }
     
     document.getElementById("total").innerHTML = total.toFixed(2);
@@ -303,7 +304,7 @@ function addPrice() {
     <div class = "order_contents_wrapper" id = "order_contents">
         <% query.forEach(function(q) { %>
             <div class="items">
-                <h5><span class="name"><%= q.name%>: </span>$<span class="price"><%= q.price%></span></h5>
+                <h5><span class="name"><%= q.name%>: </span>$<span class="price"><%= q.price%></span> x <span class="quantity"><%= q.quantity%></span></h5>
             </div>
          <% }); %>
          <hr>
