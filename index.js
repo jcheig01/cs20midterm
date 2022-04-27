@@ -14,7 +14,8 @@ function main()
 
     app.use(bodyParser.urlencoded(
         { extended: true })); 
-    app.set('views', path.join(__dirname, 'views'));
+    app.use(express.static(path.join(__dirname + '/views')));
+
     app.set('view engine', 'ejs');
 
     app.get('/', function(req, res) {
