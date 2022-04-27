@@ -20,18 +20,38 @@
 
     .entirewrapper {
         padding-top: 100px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 100px;
     }
 
     .cardwrapper {
         height: auto;
         margin: auto;
-        width: 50%;
+        width: 60%;
         /* background-color: black; */
         /* padding: 3% 6%; */
         padding-bottom: 30px;
         border: 2px solid white;
         background: black;
 
+    }
+
+    .list_items_wrapper {
+        height: auto;
+        margin: auto;
+        width: 30%;
+        padding-bottom: 30px;
+        border: 2px solid white;
+        background: black;
+    }
+
+    .userinfo_wrapper {
+        display: flex;
+        justify-content: center;
+        color: white;
+        font-family:'Titillium Web', sans-serif; 
+        border-bottom: 2px solid white;
     }
 
     .card {
@@ -43,7 +63,7 @@
 
     }
 
-    h2 {
+    h2, h3{
         font-family:'Titillium Web', sans-serif; 
         text-align: center;
         color: white;
@@ -54,11 +74,19 @@
         padding-bottom: 10px;
     }
 
-    .holdername, .card-exp {
+    .holdername, .card-exp, .get_name, .get_street, .get_zip, .get_country {
         padding-right: 50px;
     }
 
-    
+    /* .get_phone {
+        padding-bottom: 10px;
+    } */
+
+    #warning2 {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
 
     .m_button {
         display: flex;
@@ -108,7 +136,11 @@ $(document).ready(function() {
 
 function submitOrder() {
 	$('input[type="button"]').click(function () {
-        var x = validation();
+        var y = validate_shippingInfo();
+        var x;
+        if (y) {
+            x = validation();
+        }
         if (x) {
             displayConfirmPurchasePage();	
         }
@@ -117,7 +149,36 @@ function submitOrder() {
 
 function displayConfirmPurchasePage() {
     alert("Payment Success");
-    $("#e_wrapper").hide();
+    // $("#e_wrapper").hide();
+}
+function validate_shippingInfo() {
+    if (checkLength(document.getElementById("gname").value,0)) {
+        document.getElementById("warning2").innerHTML = "No Name";
+        return false;
+    } else if (checkLength(document.getElementById("gaddress").value,0)) {
+        document.getElementById("warning2").innerHTML = "No Adress";
+        return false;
+    } else if (checkLength(document.getElementById("gstreet").value,0)) {
+        document.getElementById("warning2").innerHTML = "No Street";
+        return false;
+    } else if (checkLength(document.getElementById("gcity").value,0)) {
+        document.getElementById("warning2").innerHTML = "No City";
+        return false;
+    } else if (checkLength(document.getElementById("gzip").value,0)) {
+        document.getElementById("warning2").innerHTML = "No ZIP Code";
+        return false;
+    } else if (checkLength(document.getElementById("gstate").value,0)) {
+        document.getElementById("warning2").innerHTML = "No State";
+        return false;
+    } else if (checkLength(document.getElementById("gcountry").value,0)) {
+        document.getElementById("warning2").innerHTML = "No Country";
+        return false;
+    } else if (checkLength(document.getElementById("gphone").value,0)) {
+        document.getElementById("warning2").innerHTML = "No Phone Number";
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function validation() {
@@ -207,9 +268,64 @@ function creditCardValidation(creditCradNum)
 
 </script>
 <div class = "entirewrapper" id = "e_wrapper">
+<div class = "list_items_wrapper">
+    <div class = "order_wrapper">
+        <h3>Order Summary:</h3> 
+    </div>
+    <!-- order list goes here -->
+    <div class = "order_contents_wrapper" id = "order_contents"></div>
+</div>
 <div class = "cardwrapper">
+    <div class="s_start">
+        <h2>Shipping Address:</h2> 
+    </div>
+    <div class = "userinfo_wrapper">
+        <div class = "userinfo_wrapper2">
+        <div class = "row">
+            <div class = "get_name">
+                <label for="get_adress">NAME</label><br>
+                <input type="text" id = "gname"> <br>
+            </div>
+            <div class = "get_address">
+                <label for="get_adress">ADDRESS</label><br>
+                <input type="text" id = "gaddress"> <br>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "get_street">
+                <label for="get_adress">STREET</label><br>
+                <input type="text" id = "gstreet"> <br>
+            </div>
+            <div class = "get_city">
+                <label for="get_adress">CITY</label><br>
+                <input type="text" id = "gcity"> <br>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "get_zip">
+                <label for="get_adress">ZIP</label><br>
+                <input type="text" id = "gzip"> <br>
+            </div>
+            <div class = "get_state">
+                <label for="get_adress">STATE</label><br>
+                <input type="text" id = "gstate"> <br>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "get_country">
+                <label for="get_adress">COUNTRY</label><br>
+                <input type="text" id = "gcountry"> <br>
+            </div>
+            <div class = "get_phone">
+                <label for="get_adress">PHONE</label><br>
+                <input type="text" id = "gphone"> <br>
+            </div>
+        </div>
+        <p id="warning2"></p>
+    </div>
+    </div>
     <div class="start">
-        <h2>Confirm Purchase</h2> 
+        <h2>Payment: Credit/Debit Card</h2> 
     </div>
     <div class="card">
     <div class="card-info">
