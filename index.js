@@ -125,6 +125,10 @@ function main()
     app.get('/login', function(req, res) {
         res.render('login');
     });
+    
+    app.get('/creditcard', function(req, res) {
+        res.render('creditcard');
+    });
 
     app.listen(process.env.port || 3000);
 }
