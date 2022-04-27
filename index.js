@@ -53,9 +53,7 @@ function main()
         } else if (req.body.name && req.body.price) {
             var n;
             var p;
-    
-            console.log("CART ADDED!!!!");
-    
+        
             console.log(req.body);
             if (req.body.name && req.body.price) {
                 n = req.body.name;
@@ -70,13 +68,14 @@ function main()
                 var myobj = { name: n, price: p };
                 dbo.collection("cart").insertOne(myobj, function(err, res) {
                   if (err) throw err;
-                  console.log("1 item inserted");
                   db.close();
                 });
               });
         } else {
             console.log("location not found");
         }
+
+        res.status(204).send();
     });
 
     app.get('/index', function(req, res) {

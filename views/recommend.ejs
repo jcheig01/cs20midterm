@@ -86,6 +86,40 @@
          font-family: 'Titillium Web', sans-serif;
          font-size: 15px;
          }
+
+         .cart-add {
+            text-align: center;
+            padding-bottom: 30px;
+         }
+
+         .quantity {
+            width: 35px;
+         }
+
+         .cart-button {
+            display:inline-block;
+            border:0.1em solid #FFFFFF;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.12em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            font-weight:300;
+            color: grey;
+            background-color: black;
+            text-align:center;
+            transition: all 0.2s;
+         }
+         .cart-button:hover{
+            color:white;
+            background-color:black;
+         }
+         @media all and (max-width:30em){
+            .cart-button {
+               display:block;
+               margin:0.4em auto;
+            }
+         }
          
       </style>
    </head>
@@ -132,6 +166,14 @@
                   <h5> <%= q.name%></h5>
                   <h6>$<%= q.price%></h6>
                </div>
+               <div class="cart-add">
+                  <form action="/" method="POST">
+                        <input type="hidden" class="name" name="name" value="<%= q.name%>">
+                        <input type="hidden" class="price" name="price" value=<%= q.price%>>
+                        <input type=number class="quantity" name="quantity" value=0>
+                        <button type="submit" class="cart-button">Add To Cart</button> 
+                  </form>
+               </div>
             </div>
          <% }); %>
       </section>
@@ -140,6 +182,10 @@
                 This website is for academic purpose. 2022 Moon Shoes All Rights Reserved
       </footer>
       <script>
+         $(".cart-button").click(function() {
+            // alert the class name
+            alert("Added To Cart!");
+         });
      </script>
    </body>
 </html>
