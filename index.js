@@ -121,10 +121,6 @@ function main()
     app.get('/faq', function(req, res) {
         res.render('faq');
     });
-
-    app.get('/login', function(req, res) {
-        res.render('login');
-    });
     
     app.get('/creditcard', function(req, res) {
         res.render('creditcard');
