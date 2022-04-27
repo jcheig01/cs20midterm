@@ -93,8 +93,13 @@
         justify-content: center;
         padding-top: 10px;
     }
+    
+    .a_button_w {
+      padding-right: 10px;
+    }
 
-    #a_button {
+    #a_button, #b_button {
+        font-size: 18px;
         color: black;
         /* padding: 10px 20px; */
         text-align: center;
@@ -103,6 +108,11 @@
         }
 
     #a_button:hover {
+        background: rgba(221, 226, 221, 0.2);
+        color:white;
+        }
+        
+    #b_button:hover {
         background: rgba(221, 226, 221, 0.2);
         color:white;
         }
@@ -139,6 +149,7 @@ function submitOrder() {
         var y = validate_shippingInfo();
         var x;
         if (y) {
+            document.getElementById("warning2").innerHTML = "";
             x = validation();
         }
         if (x) {
@@ -362,8 +373,9 @@ function creditCardValidation(creditCradNum)
     </div>
     <p id="warning"></p>
     <div class = "m_button">
-    <input value="MAKE PAYMENT" type="button" id = "a_button">
-    </div>    
+    <div class = "a_button_w"><input value="MAKE PAYMENT" type="button" id = "a_button"></div>
+    <div class = "b_button_w"><input value="CANCEL" type="button" id = "b_button">
+    </div></div>        
 </div>
 </div>
 </div>
