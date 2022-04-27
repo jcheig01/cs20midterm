@@ -144,7 +144,13 @@ function main()
     });
     
     app.get('/creditcard', function(req, res) {
-        res.render('creditcard');
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            if (err) { return console.log(err); }
+            
+            var dbo = db.db("moonshoes");
+            var collection = dbo.collection('cart');
+            collection.find().toArray().then(function(arr) {res.render('creditcard', {query: arr});});
+        });
     });
 
     app.listen(process.env.port || 3000);

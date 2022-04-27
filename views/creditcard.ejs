@@ -63,9 +63,14 @@
 
     }
 
-    h2, h3{
+    h2, h3, h5{
         font-family:'Titillium Web', sans-serif; 
         text-align: center;
+        color: white;
+    }
+
+    span {
+        font-family:'Titillium Web', sans-serif;
         color: white;
     }
 
@@ -140,6 +145,7 @@
 
 // ADDED FROM HERE
 $(document).ready(function() {
+    addPrice();
 	submitOrder();
 })
 
@@ -277,6 +283,16 @@ function creditCardValidation(creditCradNum)
     }
 }   
 
+function addPrice() {
+    var p_list = document.getElementsByClassName("price");
+    var total = 0;
+    for (var i=0; i < p_list.length; i++) {
+        total += parseFloat(p_list[i].innerHTML);
+    }
+    
+    document.getElementById("total").innerHTML = total.toFixed(2);
+}
+
 </script>
 <div class = "entirewrapper" id = "e_wrapper">
 <div class = "list_items_wrapper">
@@ -284,7 +300,17 @@ function creditCardValidation(creditCradNum)
         <h3>Order Summary:</h3> 
     </div>
     <!-- order list goes here -->
-    <div class = "order_contents_wrapper" id = "order_contents"></div>
+    <div class = "order_contents_wrapper" id = "order_contents">
+        <% query.forEach(function(q) { %>
+            <div class="items">
+                <h5><span class="name"><%= q.name%>: </span>$<span class="price"><%= q.price%></span></h5>
+            </div>
+         <% }); %>
+         <hr>
+         <div class="total">
+            <h2>Total: $<span id="total"></span></h2>
+         </div>
+    </div>
 </div>
 <div class = "cardwrapper">
     <div class="s_start">
