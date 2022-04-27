@@ -19,6 +19,11 @@ header h1 {
   float: left;
 }
 
+.nav-cart {
+  float: right;
+  padding-right: 10px;
+}
+
 li a {
   display: block;
   color: white;
