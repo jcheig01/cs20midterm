@@ -94,12 +94,49 @@
                 display: inline-flex;
             }
 
+            #pre-rec {
+                color: white;
+                font-size: small;
+                position:absolute;
+                top:3%;
+                right:2%;
+            }
+
+            .rec, .followup {
+                position:absolute;
+                top:3%;
+                right:2%;
+            }
+
+            #button, #recommend {
+                background-color: grey;/* Green */
+                border: none;
+                color: white;
+                padding: 12px 30px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 25px;
+            }
+
+
 
         </style>
     </head>
     <body>
         <header>
             <a href='index' style='text-decoration: none;'><h1 class = "home_link"> moon shoes </h1></a>
+            <div class="rec" style="visibility:hidden;">
+                <form action="/" method="POST">
+                    <input type="hidden" id="latitude" name="latitude" value="">
+                    <input type="hidden" id="longitude" name="longitude" value="">
+                    <button type="submit" id="button">Want Recommendation?</button>
+                </form>
+            </div>
+            <div class="followup" style="visibility:hidden;">
+                <a href="recommend"><button id="recommend">Click Here!</button></a>
+            </div>
             <hr>
         </header>
         <nav>
@@ -220,7 +257,30 @@
 
                 }
 
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
+                
+                var first = true;
 
+                function showPosition(position) {
+                    if (first) {
+                        $('#pre-rec').hide();
+                        document.getElementById("latitude").value = position.coords.latitude;
+                        document.getElementById("longitude").value = position.coords.longitude;
+                        $('.rec').css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 300);
+                        first = false;
+                    }
+                }
+
+                $(document).ready(function() {
+                    $("#button").click(function(){
+                        $('.rec').hide();
+                        $('.followup').css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 300);
+                    }); 
+                });
             </script>
     </body>
 </html>

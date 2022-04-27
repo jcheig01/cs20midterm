@@ -59,6 +59,14 @@
                 margin: 0px 0px 0px 0px;
             }
 
+            #pre-rec {
+                color: white;
+                font-size: small;
+                position:absolute;
+                top:3%;
+                right:2%;
+            }
+
             .rec, .followup {
                 position:absolute;
                 top:3%;
@@ -84,6 +92,9 @@
     <body>
         <header>
             <a href='index' style='text-decoration: none;'><h1 class = "home_link"> moon shoes </h1></a>
+            <div>
+                <p id="pre-rec">Enable Location For Recommendation</p>
+            </div>
             <div class="rec" style="visibility:hidden;">
                 <form action="/" method="POST">
                     <input type="hidden" id="latitude" name="latitude" value="">
@@ -144,6 +155,7 @@
 
             function showPosition(position) {
                 if (first) {
+                    $('#pre-rec').hide();
                     document.getElementById("latitude").value = position.coords.latitude;
                     document.getElementById("longitude").value = position.coords.longitude;
                     $('.rec').css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 300);
