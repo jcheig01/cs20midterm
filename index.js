@@ -50,29 +50,32 @@ function main()
             }
 
             forecast(latitude, longitude); 
-        } else if (req.body.name && req.body.price) {
+        } else if (req.body.name && req.body.price && req.body.quantity) {
             var n;
             var p;
+            var q;
         
             console.log(req.body);
-            if (req.body.name && req.body.price) {
+            if (req.body.name && req.body.price && parseInt(req.body.quantity) > 0) {
                 n = req.body.name;
                 p = req.body.price;
+                q = req.body.quantity;
+
+                MongoClient.connect(url, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db("moonshoes");
+                    var myobj = { name: n, price: p, quantity: q};
+                    dbo.collection("cart").insertOne(myobj, function(err, res) {
+                      if (err) throw err;
+                      db.close();
+                    });
+                });
             } else {
-                console.log("name not found");
+                console.log("Error in POST");
             }
     
-            MongoClient.connect(url, function(err, db) {
-                if (err) throw err;
-                var dbo = db.db("moonshoes");
-                var myobj = { name: n, price: p };
-                dbo.collection("cart").insertOne(myobj, function(err, res) {
-                  if (err) throw err;
-                  db.close();
-                });
-              });
         } else {
-            console.log("location not found");
+            res.status(204).send();
         }
 
         res.status(204).send();
