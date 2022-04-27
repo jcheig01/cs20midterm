@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-      <title>Mens</title>
+      <title>Recommended</title>
       <link rel="stylesheet" href="index.css">
       <link href=
             "https://fonts.googleapis.com/css2?family=Rubik+Beastly&family=Shrikhand&display=swap"
@@ -96,7 +96,7 @@
    
    <body>
       <header>
-            <a href='index.html' style='text-decoration: none;'><h1 class = "home_link"> moon shoes </h1></a>
+            <a href='index' style='text-decoration: none;'><h1 class = "home_link"> moon shoes </h1></a>
             <hr>
        </header>
       <div style="z-index: 2;">
@@ -125,10 +125,10 @@
          <% query.forEach(function(q) { %>
             <div class="product-card">
                <div class="product-image">
-                  <img src= "<%= q.source%>">
+                  <img src= "<%= q.source%>" height="400px">
                </div>
                <div class="product-info">
-                  <h4> <%= q.material%> </h4>
+                  <h4> <%= q.gender%> </h4>
                   <h5> <%= q.name%></h5>
                   <h6>$<%= q.price%></h6>
                </div>

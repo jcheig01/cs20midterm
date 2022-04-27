@@ -23,39 +23,60 @@ function main()
     });
 
     app.post('/', function(req, res) {
-        var latitude;
-        var longitude;
 
-        console.log(req.body);
         if (req.body.latitude && req.body.latitude) {
-            latitude = req.body.latitude;
-            longitude = req.body.longitude;
+            var latitude = req.body.latitude;
+            var longitude = req.body.longitude;
+
+            var API_KEY = 'b8c0e6f2d0bfa0d70e82c0d934973f63'; 
+        
+            const forecast = function (latitude, longitude) { 
+            
+                var url = `http://api.openweathermap.org/data/2.5/weather?`
+                            +`lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+            
+                request({ url: url, json: true }, function (error, response) { 
+                    if (error) { 
+                        console.log('Unable to connect to Forecast API'); 
+                    } 
+                    else { 
+                        if (parseFloat(response.body.main.temp) > 280) { 
+                            recommend = "summer";
+                        } else {
+                            recommend = "winter";
+                        }
+                    } 
+                }) 
+            }
+
+            forecast(latitude, longitude); 
+        } else if (req.body.name && req.body.price) {
+            var n;
+            var p;
+    
+            console.log("CART ADDED!!!!");
+    
+            console.log(req.body);
+            if (req.body.name && req.body.price) {
+                n = req.body.name;
+                p = req.body.price;
+            } else {
+                console.log("name not found");
+            }
+    
+            MongoClient.connect(url, function(err, db) {
+                if (err) throw err;
+                var dbo = db.db("moonshoes");
+                var myobj = { name: n, price: p };
+                dbo.collection("cart").insertOne(myobj, function(err, res) {
+                  if (err) throw err;
+                  console.log("1 item inserted");
+                  db.close();
+                });
+              });
         } else {
-            console.log("latitude not found");
+            console.log("location not found");
         }
-
-        var API_KEY = 'b8c0e6f2d0bfa0d70e82c0d934973f63'; 
-        
-        const forecast = function (latitude, longitude) { 
-        
-            var url = `http://api.openweathermap.org/data/2.5/weather?`
-                        +`lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
-        
-            request({ url: url, json: true }, function (error, response) { 
-                if (error) { 
-                    console.log('Unable to connect to Forecast API'); 
-                } 
-                else { 
-                    if (parseFloat(response.body.main.temp) > 280) { 
-                        recommend = "summer";
-                    } else {
-                        recommend = "winter";
-                    }
-                } 
-            }) 
-        }
-
-        forecast(latitude, longitude); 
     });
 
     app.get('/index', function(req, res) {
@@ -76,7 +97,7 @@ function main()
             
             var dbo = db.db("moonshoes");
             var collection = dbo.collection('shoes');
-            collection.find({gender:"mens"}).toArray().then(function(arr) {console.log(arr); res.render('mens', {query: arr});});
+            collection.find({gender:"Mens"}).toArray().then(function(arr) {res.render('mens', {query: arr});});
         });
 
     });
@@ -87,7 +108,7 @@ function main()
             
             var dbo = db.db("moonshoes");
             var collection = dbo.collection('shoes');
-            collection.find({gender:"womens"}).toArray().then(function(arr) {console.log(arr); res.render('womens', {query: arr});});
+            collection.find({gender:"Womens"}).toArray().then(function(arr) {res.render('womens', {query: arr});});
         });
     });
 
@@ -99,7 +120,7 @@ function main()
                 
                 var dbo = db.db("moonshoes");
                 var collection = dbo.collection('shoes');
-                collection.find({weather:"winter"}).toArray().then(function(arr) {console.log(arr); res.render('recommend', {query: arr});});
+                collection.find({weather:"winter"}).toArray().then(function(arr) {res.render('recommend', {query: arr});});
             });
         } else if (recommend == "summer") {
             MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
@@ -107,7 +128,7 @@ function main()
                 
                 var dbo = db.db("moonshoes");
                 var collection = dbo.collection('shoes');
-                collection.find({weather:"summer"}).toArray().then(function(arr) {console.log(arr); res.render('recommend', {query: arr});});
+                collection.find({weather:"summer"}).toArray().then(function(arr) {res.render('recommend', {query: arr});});
             });
         } else {
             res.render('index');
